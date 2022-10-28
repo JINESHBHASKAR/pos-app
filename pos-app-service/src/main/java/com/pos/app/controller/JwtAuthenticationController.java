@@ -40,7 +40,7 @@ public class JwtAuthenticationController {
 	@Autowired
 	private JwtUserDetailsService userDetailsService;
 
-	@PostMapping(value = "/login")
+	@PostMapping( "/login")
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 		
 		log.info("inside createAutheticationToken() method -------- JwtAuthenticationController");
@@ -58,7 +58,7 @@ public class JwtAuthenticationController {
 		return ResponseEntity.ok(new JwtResponse(token));
 	}
 	
-	@PostMapping(value = "/register")
+	@PostMapping( "/register")
 	public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
 		return ResponseEntity.ok(userDetailsService.save(user));
 	}
