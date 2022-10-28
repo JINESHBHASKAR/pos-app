@@ -11,9 +11,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.pos.app.constants.AppConstants;
+import com.pos.app.exception.BusinessException;
 import com.pos.app.model.User;
 import com.pos.app.model.UserDTO;
 import com.pos.app.repository.UserRepository;
+import com.pos.app.vo.StatusResponse;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
@@ -39,15 +42,32 @@ public class JwtUserDetailsService implements UserDetailsService {
 				new ArrayList<>());
 	}
 	
-	public User save(UserDTO user) {
-		log.info("inside saveUser()------ JwtUserDetails class");
+	public StatusResponse save(UserDTO user) {
+		
+		StatusResponse response = new StatusResponse();
 		User newUser = new User();
-		newUser.setUsername(user.getUsername());
-		newUser.setFirstName(user.getFirstName());
-		newUser.setLastName(user.getLastName());
-		newUser.setPhone(user.getPhone());
-		newUser.setEmail(user.getEmail());
-		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-		return userRepository.save(newUser);
+		
+		try {
+			log.info("inside saveUser()------ JwtUserDetails class");
+			
+			newUser.setUsername(user.getUsername());
+			newUser.setFirstName(user.getFirstName());
+			newUser.setLastName(user.getLastName());
+			newUser.setPhone(user.getPhone());
+			newUser.setEmail(user.getEmail());
+			newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+			
+			newUser = userRepository.save(newUser);
+			
+			
+			response.setStatus(AppConstants.STATUS_SUCCESS);
+			response.setMessage("User Registration Successfull");
+			response.setData(newUser);
+			
+		}catch(BusinessException e) {
+			log.error("Error Message:"+ e.getMessage());
+			throw new BusinessException(e.getMessage());
+		}
+		return response;
 	}
 }

@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.pos.app.service.JwtUserDetailsService;
-
-
+import com.pos.app.vo.StatusResponse;
 import com.pos.app.config.JwtTokenUtil;
+import com.pos.app.constants.AppConstants;
 import com.pos.app.model.JwtRequest;
 import com.pos.app.model.JwtResponse;
 import com.pos.app.model.UserDTO;
@@ -55,7 +55,13 @@ public class JwtAuthenticationController {
 
 		final String token = jwtTokenUtil.generateToken(userDetails);
 		log.info("Token Generated :"+token);
-		return ResponseEntity.ok(new JwtResponse(token));
+		
+		StatusResponse response = new StatusResponse();
+		response.setStatus(AppConstants.STATUS_SUCCESS);
+		response.setMessage("Login Success");
+		response.setData(new JwtResponse(token));
+		
+		return ResponseEntity.ok(response);
 	}
 	
 	@PostMapping( "/register")
