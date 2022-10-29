@@ -46,4 +46,17 @@ public class CustomExceptionHandler {
 	} 
 	
 	
+	@ExceptionHandler(BusinessException.class)
+	@ResponseStatus(value = HttpStatus.UNAUTHORIZED)
+	public @ResponseBody StatusResponse unAuthorizedException(final BusinessException exception) {
+		log.info("inside unAuthorizedException CustomExceptionHandler");
+		//ErrorResponse error = new ErrorResponse();
+		StatusResponse error = new StatusResponse();
+		error.setMessage(exception.getMessage());
+		error.setStatus(AppConstants.STATUS_FAILED);
+		error.setData("");		
+		return error;
+	} 
+	
+	
 }
