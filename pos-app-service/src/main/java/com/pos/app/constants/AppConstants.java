@@ -3,8 +3,8 @@ package com.pos.app.constants;
 public class AppConstants {
 
 	// status
-	public static final String STATUS_SUCCESS = "success";
-	public static final String STATUS_FAILED = "failed";
+	public static final Boolean STATUS_SUCCESS = true;
+	public static final Boolean STATUS_FAILED = false;
 	
 	//ROLE
 	public static final String ROLE_ADMIN="Admin";

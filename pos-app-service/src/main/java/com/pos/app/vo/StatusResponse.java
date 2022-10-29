@@ -4,13 +4,13 @@ public class StatusResponse {
 	
 	
 	private static final long serialVersionUID = -4033937348246299745L;
-	private String status;
+	private Boolean status;
 	private String message;
 	private Object data;
 	
 	
 	
-	public StatusResponse(String status, String message, Object data) {
+	public StatusResponse(Boolean status, String message, Object data) {
 		super();
 		this.status = status;
 		this.message = message;
@@ -20,11 +20,11 @@ public class StatusResponse {
 	public StatusResponse() {				
 	}
 
-	public String getStatus() {
+	public Boolean getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Boolean status) {
 		this.status = status;
 	}
 
