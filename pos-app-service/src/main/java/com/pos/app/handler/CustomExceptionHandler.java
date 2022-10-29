@@ -35,7 +35,7 @@ public class CustomExceptionHandler {
 	
 	@ExceptionHandler(BusinessException.class)
 	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-	public @ResponseBody StatusResponse handleBusinessException(final BusinessException exception) {
+	public @ResponseBody StatusResponse handleBusinessException(final BusinessException exception, String msg) {
 		log.info("inside handleBusinessException CustomExceptionHandler");
 		//ErrorResponse error = new ErrorResponse();
 		StatusResponse error = new StatusResponse();
@@ -46,7 +46,7 @@ public class CustomExceptionHandler {
 	} 
 	
 	
-	@ExceptionHandler(BusinessException.class)
+	//@ExceptionHandler(BusinessException.class)
 	@ResponseStatus(value = HttpStatus.UNAUTHORIZED)
 	public @ResponseBody StatusResponse unAuthorizedException(final BusinessException exception) {
 		log.info("inside unAuthorizedException CustomExceptionHandler");
