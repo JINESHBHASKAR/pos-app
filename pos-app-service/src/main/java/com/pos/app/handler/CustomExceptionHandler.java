@@ -28,7 +28,7 @@ public class CustomExceptionHandler {
 		StatusResponse error = new StatusResponse();
 		error.setMessage(exception.getMessage());
 		error.setStatus(AppConstants.STATUS_FAILED);
-		error.setData("");		
+		error.setData(null);		
 		return error;
 	}
 	
