@@ -21,7 +21,7 @@ public class CustomExceptionHandler {
 	
 	
 	@ExceptionHandler(Exception.class)
-	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+	@ResponseStatus(value = HttpStatus.ACCEPTED)
 	public @ResponseBody StatusResponse handleCommonException(final Exception exception) {
 		log.info("inside handleCommonException CustomExceptionHandler");
 		//ErrorResponse error = new ErrorResponse();
