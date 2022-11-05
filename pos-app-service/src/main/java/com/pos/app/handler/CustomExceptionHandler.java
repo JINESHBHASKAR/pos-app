@@ -21,14 +21,14 @@ public class CustomExceptionHandler {
 	
 	
 	@ExceptionHandler(Exception.class)
-	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+	@ResponseStatus(value = HttpStatus.ACCEPTED)
 	public @ResponseBody StatusResponse handleCommonException(final Exception exception) {
 		log.info("inside handleCommonException CustomExceptionHandler");
 		//ErrorResponse error = new ErrorResponse();
 		StatusResponse error = new StatusResponse();
 		error.setMessage(exception.getMessage());
 		error.setStatus(AppConstants.STATUS_FAILED);
-		error.setData("");		
+		error.setData(null);		
 		return error;
 	}
 	
